@@ -11,8 +11,9 @@ class Question(models.Model):
         return self.user
 
 class Answer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers')
-    supporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answers',null=True,blank=True)
+    supporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answers',null=True,blank=True)
+    reply = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True) 
     answer = models.TextField()
     start_date = models.DateTimeField(auto_now_add=True)
 
